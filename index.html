@@ -6,12 +6,10 @@
     <title>מאפיית נחמה - חוות דעת</title>
     <style>
         :root {
-            --bg-color: #1a1a1a;
-            --card-bg: #262626;
             --accent-gold: #d4af37;
             --gold-hover: #f3e5ab;
-            --text-color: #f5f5f5;
-            --subtext-color: #a3a3a3;
+            --dark-green: #0b1f14;
+            --text-light: #ffffff;
         }
 
         * {
@@ -21,54 +19,95 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
+            background-color: var(--dark-green);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        /* חלק 1: עמוד ראשון - לוגו בלבד + כפתור גלילה */
+        .hero-section {
+            height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            background-color: #ffffff;
+            position: relative;
+            text-align: center;
             padding: 20px;
         }
 
-        .container {
-            width: 100%;
-            max-width: 420px;
-            background-color: var(--card-bg);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            border-radius: 20px;
-            padding: 40px 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        .logo-img {
+            max-width: 280px;
+            width: 80%;
+            height: auto;
+            margin-bottom: 40px;
+        }
+
+        .scroll-btn {
+            position: absolute;
+            bottom: 40px;
+            background: linear-gradient(135deg, #0b1f14 0%, #173d28 100%);
+            color: var(--accent-gold);
+            padding: 16px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 700;
+            border: 2px solid var(--accent-gold);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-btn:hover {
+            transform: translateY(-3px);
+            background: var(--accent-gold);
+            color: var(--dark-green);
+        }
+
+        /* חלק 2: עמוד דירוגים + כפתורים */
+        .content-section {
+            min-height: 100vh;
+            background: linear-gradient(rgba(11, 31, 20, 0.75), rgba(11, 31, 20, 0.85)), 
+                        url('cake_background.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
             text-align: center;
         }
 
-        .challah-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 15px auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .challah-icon svg {
+        .card-container {
             width: 100%;
-            height: 100%;
-            fill: var(--accent-gold);
+            max-width: 400px;
+            background: rgba(19, 46, 32, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 20px;
+            padding: 35px 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
 
-        h1 {
-            font-size: 28px;
-            font-weight: 700;
+        h2 {
             color: var(--accent-gold);
-            margin-bottom: 8px;
-            letter-spacing: 0.5px;
+            font-size: 26px;
+            margin-bottom: 10px;
         }
 
         p.subtitle {
             font-size: 15px;
-            color: var(--subtext-color);
-            margin-bottom: 30px;
+            color: #d1dcd6;
+            margin-bottom: 25px;
             line-height: 1.5;
         }
 
@@ -76,93 +115,86 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 12px;
+            gap: 10px;
             width: 100%;
-            padding: 16px;
-            margin-bottom: 16px;
+            padding: 15px;
+            margin-bottom: 14px;
             border-radius: 12px;
             font-size: 16px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
         .btn-google {
             background: linear-gradient(135deg, #d4af37 0%, #aa820a 100%);
             color: #121212;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
             border: none;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
         .btn-google:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
             background: linear-gradient(135deg, #e5be48 0%, #bb931b 100%);
         }
 
         .btn-secondary {
-            background-color: rgba(255, 255, 255, 0.05);
-            color: var(--text-color);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .btn-secondary:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: rgba(255, 255, 255, 0.2);
             border-color: var(--accent-gold);
             color: var(--accent-gold);
         }
 
-        .btn svg {
-            width: 20px;
-            height: 20px;
-            fill: currentColor;
-        }
-
-        footer {
-            margin-top: 25px;
-            font-size: 12px;
-            color: var(--subtext-color);
-            opacity: 0.6;
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <!-- אייקון חלה זהב -->
-        <div class="challah-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M19.5 8.5c-.83 0-1.5.67-1.5 1.5 0 .39.15.74.39 1.01C17.43 11.41 16 12.08 16 14c0 1.92 1.43 2.59 2.39 2.99-.24.27-.39.62-.39 1.01 0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5c0-.39-.15-.74-.39-1.01.96-.4 2.39-1.07 2.39-2.99 0-1.92-1.43-2.59-2.39-2.99.24-.27.39-.62.39-1.01 0-.83-.67-1.5-1.5-1.5zM12 4.5c-.83 0-1.5.67-1.5 1.5 0 .39.15.74.39 1.01C9.93 7.41 8.5 8.08 8.5 10c0 1.92 1.43 2.59 2.39 2.99-.24.27-.39.62-.39 1.01 0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5c0-.39-.15-.74-.39-1.01.96-.4 2.39-1.07 2.39-2.99 0-1.92-1.43-2.59-2.39-2.99.24-.27.39-.62.39-1.01 0-.83-.67-1.5-1.5-1.5zm-7.5 4c-.83 0-1.5.67-1.5 1.5 0 .39.15.74.39 1.01C2.43 11.41 1 12.08 1 14c0 1.92 1.43 2.59 2.39 2.99-.24.27-.39.62-.39 1.01 0 .83.67 1.5 1.5 1.5s1.5-.67 1.5-1.5c0-.39-.15-.74-.39-1.01.96-.4 2.39-1.07 2.39-2.99 0-1.92-1.43-2.59-2.39-2.99.24-.27.39-.62.39-1.01 0-.83-.67-1.5-1.5-1.5z"/>
-            </svg>
+    <!-- חלק 1: לוגו נחמה בלבד -->
+    <section class="hero-section">
+        <img src="logo.png" alt="מאפיית נחמה" class="logo-img">
+        
+        <a href="#review-section" class="scroll-btn">
+            כדי לדרג אותנו לחצו פה 👇
+        </a>
+    </section>
+
+    <!-- חלק 2: עמוד הדירוגים והרשתות -->
+    <section id="review-section" class="content-section">
+        <div class="card-container">
+            <h2>מאפיית נחמה</h2>
+            <p class="subtitle">נהניתם מהמאפים והשירות שלנו?<br>נשמח מאוד לשמוע את דעתכם!</p>
+
+            <!-- כפתור ביקורת לגוגל עם ה-Place ID המדויק של אפרת -->
+            <a href="https://search.google.com/local/writereview?placeid=ChIJ2XO8DB7fAhURAnCDgE4r95g" target="_blank" class="btn btn-google">
+                אשמח לדרג בגוגל ⭐⭐⭐⭐⭐
+            </a>
+
+            <!-- אינסטגרם -->
+            <a href="https://www.instagram.com/nechama.bakery?srtk=MWJzbWo3c2tkZnN4" target="_blank" class="btn btn-secondary">
+                אינסטגרם
+            </a>
+
+            <!-- פייסבוק -->
+            <a href="https://www.facebook.com/share/14uaWWxbTSY/" target="_blank" class="btn btn-secondary">
+                פייסבוק
+            </a>
+
+            <!-- וואטסאפ -->
+            <a href="https://wa.me/972526331141" target="_blank" class="btn btn-secondary">
+                וואטסאפ
+            </a>
         </div>
-
-        <h1>מאפיית נחמה</h1>
-        <p class="subtitle">נהניתם מהמאפים והשירות שלנו?<br>נשמח מאוד לשמוע את דעתכם!</p>
-
-        <!-- כפתור ביקורת לגוגל -->
-        <!-- השתל בתוך ה-href את הקישור הישיר לביקורת גוגל של המאפייה -->
-        <a href="YOUR_GOOGLE_REVIEW_LINK_HERE" target="_blank" class="btn btn-google">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.03-1.99 1.27-5.62 3.72-.53.36-1.01.54-1.44.53-.47-.01-1.38-.27-2.05-.49-.83-.27-1.49-.42-1.43-.89.03-.25.38-.51 1.07-.79 4.19-1.82 6.98-3.02 8.37-3.6 3.98-1.66 4.81-1.95 5.35-1.96.12 0 .38.03.55.17.14.12.18.28.2.45-.02.07-.02.21-.04.38z"/>
-            </svg>
-            אשמח לדרג בגוגל ⭐⭐⭐⭐⭐
-        </a>
-
-        <!-- כפתור אינסטגרם -->
-        <a href="https://www.instagram.com/" target="_blank" class="btn btn-secondary">
-            אינסטגרם
-        </a>
-
-        <!-- כפתור חיוג טלפוני -->
-        <a href="tel:0500000000" class="btn btn-secondary">
-            התקשרו אלינו
-        </a>
-
-        <footer>
-            מאפיית נחמה &copy; כל הזכויות שמורות
-        </footer>
-    </div>
+    </section>
 
 </body>
 </html>
